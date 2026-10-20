@@ -37,22 +37,37 @@ def get_upcoming_birthdays(users: list[dict]) -> list[dict]:
     return upcoming_birthdays
 
 # --- Приклад використання ---
-# Сьогодні 2024.10.22, тому результатом може бути:
+# Сьогодні 2024.10.21, тому результатом може бути:
 users = [
     {"name": "John Doe", "birthday": "1985.10.26"}, # Понеділок, 26 жовтня , наступного тижня
     {"name": "Jane Smith", "birthday": "1990.10.24"}, # Субота, 24 жовтня -> переносимо на Понеділок, 26
     {"name": "Peter Pan", "birthday": "1992.10.25"},    # Неділя, 25 жовтня -> переносимо на Понеділок, 26
     {"name": "Alice Wonderland", "birthday": "1995.10.30"}, # П'ятниця, 30 жовтня -> вже за межами 7 днів
-    {"name": "Sam Winchester", "birthday": "2000.10.20"}, # Сьогодні
+    {"name": "Sam Winchester", "birthday": "2000.10.21"}, # Сьогодні
     {"name": "Dean Winchester", "birthday": "1979.08.02"}, # Вже минув цього року, наступний через рік
 ]
 
 upcoming_birthdays = get_upcoming_birthdays(users)
 
-print("-"*10)
-print(datetime.now().date())
-print("-"*65)
+print("-"*20)
+print("Сьогодні:", datetime.now().date())
+print("-"*60)
 print("Список привітань на цьому тижні:")
 for num in upcoming_birthdays:
         print(num)
-print("-"*65)
+print("-"*60)
+
+
+# Реальний приклад використання:
+
+"""
+--------------------
+Сьогодні: 2026-10-21
+------------------------------------------------------------
+Список привітань на цьому тижні:
+{'name': 'John Doe', 'congratulation_date': '2026.10.26'}
+{'name': 'Jane Smith', 'congratulation_date': '2026.10.26'}
+{'name': 'Peter Pan', 'congratulation_date': '2026.10.26'}
+{'name': 'Sam Winchester', 'congratulation_date': '2026.10.21'}
+------------------------------------------------------------
+"""
