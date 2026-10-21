@@ -1,11 +1,19 @@
 from datetime import datetime
 
 
-def get_days_from_today(date: str) -> int:
+from datetime import datetime
+
+
+def get_days_from_today(date: str) -> int | None:
     """
     Повертає кількість днів між заданою датою та сьогоднішньою датою.
     """
-    target_date = datetime.strptime(date, "%Y-%m-%d").date()
+    try:
+        target_date = datetime.strptime(date, "%Y-%m-%d").date()
+    except ValueError:
+        print("Помилка: введіть дату у форматі YYYY-MM-DD.")
+        return None
+
     today = datetime.now().date()
 
     return (today - target_date).days
@@ -13,11 +21,10 @@ def get_days_from_today(date: str) -> int:
 
 date = input("Введіть дату у форматі YYYY-MM-DD: ")
 
-try:
-    days = get_days_from_today(date)
+days = get_days_from_today(date)
+
+if days is not None:
     print(f"Кількість днів: {days}")
-except ValueError:
-    print("Помилка: введіть дату у форматі YYYY-MM-DD.")
 
 
 # Реальний приклад використання:
@@ -33,3 +40,4 @@ except ValueError:
 Введіть дату у форматі YYYY-MM-DD: 2026-11-03
 Кількість днів: -13
 """
+

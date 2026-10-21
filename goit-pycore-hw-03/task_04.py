@@ -11,7 +11,15 @@ def get_upcoming_birthdays(users: list[dict]) -> list[dict]:
             user["birthday"], "%Y.%m.%d"
         ).date()
 
-        birthday_this_year = birthday.replace(year=today.year)
+        try:
+            birthday_this_year = birthday.replace(year=today.year)
+        except ValueError:
+            # 29 лютого у невисокосному році
+            birthday_this_year = birthday.replace(
+                year=today.year,
+                month=2,
+                day=28
+            )
 
         if birthday_this_year < today:
             birthday_this_year = birthday_this_year.replace(
